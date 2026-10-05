@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<!--
+================================================================
+株式会社フリーライフ ブランドサイト デザイン案（9/26 house style 版）
+  コンセプト：「余白をひらく ― ブラインドを上げるように」
+    社名「Free Life」を「ゆとりのある暮らし」と読みました。
+    建物をきちんと手入れすること（不動産管理）と、暮らしに役立つ品を届けること（物販）は、
+    どちらも住む人・使う人の毎日に「余白」をつくる仕事。
+    閉じていたブラインドが一枚ずつひらき、夕暮れの集合住宅に光が通る、という動きで表しています。
+    ・ヒーロー：集合住宅の写真の上で、ブラインドの羽根が上から順にひらくCanvas（写真を使う型）
+    ・右端のスクロールレール：回りながら下りていく鍵。最後に鍵穴がひらく
+    ・配色：青緑の夜の色を地に、緑青（ろくしょう）の鍵の色
+    ※所在地・地名など土地から着想した要素、代表者の氏名から着想した要素は採用していません。
+  デプロイ：Cloudflare Pages（Direct Upload）にこのファイルをそのままアップロード。
+            ビルド不要。外部依存は Google Fonts と Unsplash 画像のみ。
+
+  ■ 公開前の確認事項（チェックリスト）
+  【確認事項】1. 社名「Free Life」を「ゆとりのある暮らし」と読んだ解釈はデザイン上のものです
+  【確認事項】2. キャッチコピー「手入れを、ゆとりに。」は仮案です
+  【確認事項】3. 英字表記「Free Life」はCSVに無い仮表記です（ロゴ・ヒーロー等）
+  【確認事項】4. 「社名のこと」「事業内容」「管理の進め方」「私たちの約束」の文章は、CSVの事業内容（不動産管理法人・物販業）を膨らませた仮文です
+  【確認事項】5. 管理している物件の種類・戸数・エリアなどはCSVに無いため記載していません。「管理の進め方」は一般的な流れとしての仮案です
+  【確認事項】6. 物販業の取扱商品・販売チャネルはCSVに無いため、一般的な表現にとどめています。ネット販売を行う場合は特定商取引法に基づく表記ページが別途必要です
+  【確認事項】7. 他者の物件の賃貸管理を受託する場合は賃貸住宅管理業法の登録、仲介を行う場合は宅地建物取引業の免許の記載要否をご確認ください
+  【確認事項】8. 代表者の役職は「代表取締役」と仮置き。代表メッセージは草案です。ご本人の確認・修正を経て公開してください
+  【確認事項】9. 所在地はCSVの「金沢市…」に都道府県名（石川県）と郵便番号を補っています
+  【確認事項】10. 画像はUnsplashのフリー素材（仮）。photo-1624204386084-dd8c05e32226 / photo-1729505305192-610539203144 / photo-1650229068182-6931ccb389c2 / photo-1592276040264-e10344a6a10e。自社写真への差し替え推奨
+  【確認事項】11. 設立・資本金・従業員数はCSVに無いため未掲載（会社概要にコメントで行を用意）
+  【確認事項】12. OGP画像・favicon・公開URL
+================================================================
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>株式会社フリーライフ｜不動産管理・物販</title>
+<meta name="description" content="株式会社フリーライフは、不動産の管理と物販を行う会社です。建物を大切に守り、暮らしに役立つ品を届けます。手入れを、ゆとりに。">
+<meta property="og:title" content="株式会社フリーライフ｜不動産管理・物販">
+<meta property="og:description" content="株式会社フリーライフは、不動産の管理と物販を行う会社です。建物を大切に守り、暮らしに役立つ品を届けます。手入れを、ゆとりに。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<!-- 【確認事項】og:url / og:image は公開ドメイン確定後に設定してください -->
+<meta name="theme-color" content="#10201D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2310201D'/%3E%3Crect x='7' y='8' width='18' height='16' fill='none' stroke='%238CCBB2' stroke-width='1.6'/%3E%3Cpath d='M7 13h18M7 18h18' stroke='%238CCBB2' stroke-width='1.3'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Shippori+Mincho+B1:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --base:#10201D;      /* 夜の青緑 */
+  --base-2:#162C28;
+  --base-deep:#0B1715;
+  --text:#E9EFE9;      /* 漆喰の白 */
+  --mute:#93A8A1;
+  --accent:#8CCBB2;    /* 緑青（鍵の色） */
+  --brass:#D8C9A3;     /* 古い真鍮 */
+  --line:rgba(233,239,233,.14);
+  --hd-bg:rgba(16,32,29,.86);
+  --menu-bg:rgba(11,23,21,.97);
+  --serif:"Shippori Mincho B1","Hiragino Mincho ProN","Yu Mincho",serif;
+  --sans:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --latin:"Jost","Helvetica Neue",Arial,sans-serif;
+  --num:"Jost","Helvetica Neue",Arial,sans-serif;
+  --hh:72px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hh) + env(safe-area-inset-top,0px));-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--base);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.92;letter-spacing:.04em;word-break:auto-phrase;text-wrap:pretty;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,p,ul,ol,dl,dd,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+.nw{display:inline-block}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:12px;top:-60px;z-index:200;background:var(--accent);color:var(--base);padding:10px 16px;text-decoration:none;font-weight:700}
+.skip:focus{top:calc(12px + env(safe-area-inset-top,0px))}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wrap{width:min(1160px,100% - 48px);margin:0 auto}
+.sec{position:relative;padding:clamp(96px,14vw,176px) 0}
+/* header */
+.hd{position:fixed;inset:0 0 auto 0;z-index:100;padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid transparent;transition:background .4s,border-color .4s,backdrop-filter .4s}
+.hd.is-scrolled{background:var(--hd-bg);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line)}
+.hd__in{height:var(--hh);display:flex;align-items:center;justify-content:space-between;gap:20px;width:min(1240px,100% - 40px);margin:0 auto}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
+.logo svg{width:32px;height:32px;flex:none}
+.logo__name{font-family:var(--serif);font-weight:600;font-size:17px;letter-spacing:.14em;line-height:1.25;white-space:nowrap}
+.logo__name small{display:block;font-family:var(--sans);font-weight:400;font-size:10.5px;letter-spacing:.18em;color:var(--mute)}
+.gnav ul{display:flex;gap:clamp(18px,2.2vw,34px)}
+.gnav a{position:relative;display:block;padding:6px 0;text-decoration:none;font-size:13.5px;letter-spacing:.13em}
+.gnav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.gnav a:hover::after,.gnav a:focus-visible::after,.gnav a[aria-current="true"]::after{transform:scaleX(1)}
+.menu-btn{display:none;position:relative;width:44px;height:44px;background:none;border:0;color:var(--text);cursor:pointer;flex:none}
+.menu-btn span{position:absolute;left:11px;right:11px;height:1.5px;background:currentColor;transition:transform .3s,opacity .3s}
+.menu-btn span:nth-child(1){top:16px}.menu-btn span:nth-child(2){top:22px}.menu-btn span:nth-child(3){top:28px}
+.menu-btn[aria-expanded="true"] span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.menu-btn[aria-expanded="true"] span:nth-child(2){opacity:0}
+.menu-btn[aria-expanded="true"] span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+/* hero shared */
+.hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden}
+.hero canvas.full{position:absolute;inset:0;width:100%;height:100%;display:block}
+.js .hero [data-in]{opacity:0;transform:translateY(-14px);transition:opacity 1.3s cubic-bezier(.22,.7,.2,1),transform 1.3s cubic-bezier(.22,.7,.2,1)}
+.js .is-loaded .hero [data-in]{opacity:1;transform:none}
+.is-loaded .hero [data-in="2"]{transition-delay:.4s}
+.is-loaded .hero [data-in="3"]{transition-delay:.9s}
+.is-loaded .hero [data-in="4"]{transition-delay:1.3s}
+.cue{position:absolute;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));width:1px;height:54px;background:var(--line);overflow:hidden;z-index:3}
+.cue::after{content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:var(--text);animation:drop 2.4s ease-in-out infinite}
+@keyframes drop{to{top:100%}}
+/* reveal */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity 1.1s cubic-bezier(.22,.7,.2,1),transform 1.1s cubic-bezier(.22,.7,.2,1)}
+.js .rv.is-in{opacity:1;transform:none}
+.js .rv-d1{transition-delay:.15s}.js .rv-d2{transition-delay:.3s}
+/* draw figures */
+.fig{width:100%;height:auto;overflow:visible}
+.fig .ln{fill:none;stroke:var(--accent);stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.js .fig .ln{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.4s cubic-bezier(.45,.05,.2,1) .3s}
+.js .fig .ln.d2{transition-delay:.9s}.js .fig .ln.d3{transition-delay:1.5s}.js .fig .ln.d4{transition-delay:2.1s}
+.js .fig.is-drawn .ln{stroke-dashoffset:0}
+.js .fig .pop{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(.4);transition:opacity .8s 1.4s,transform .8s cubic-bezier(.3,1.6,.5,1) 1.4s}
+.js .fig .lbl{opacity:0;transition:opacity 1s 1.9s}
+.js .fig.is-drawn .pop{opacity:1;transform:none}
+.js .fig.is-drawn .lbl{opacity:1}
+.fig text{font-family:var(--sans);fill:var(--text);letter-spacing:.12em}
+/* sections */
+.lead-l{font-family:var(--serif);font-size:clamp(20px,2.3vw,28px);line-height:1.85;letter-spacing:.1em}
+.p-mute{color:var(--mute)}
+.two{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(40px,7vw,110px);align-items:center}
+.ph{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--base-2),var(--base))}
+.ph img{width:100%;height:100%;object-fit:cover}
+/* business rows */
+.biz{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(32px,6vw,88px);align-items:center}
+.biz + .biz{margin-top:clamp(72px,10vw,128px)}
+.biz:nth-of-type(even) .biz__media{order:2}
+.biz__media{aspect-ratio:4/3}
+.biz__media img{filter:saturate(.78) contrast(1.03);transition:transform 1.4s cubic-bezier(.22,.7,.2,1)}
+.biz:hover .biz__media img{transform:scale(1.035)}
+.biz__kind{font-size:13px;letter-spacing:.16em;color:var(--accent);margin-bottom:12px}
+.biz h3{font-family:var(--serif);font-weight:600;font-size:clamp(22px,2.5vw,30px);letter-spacing:.1em;line-height:1.6;margin-bottom:18px}
+.biz p{max-width:30em}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.tags li{border:1px solid var(--line);border-radius:999px;padding:4px 14px;font-size:12.5px;letter-spacing:.08em}
+/* band */
+.band{position:relative;height:clamp(280px,44vw,540px);overflow:hidden;background:var(--base-2)}
+.band .ph{position:absolute;inset:0}
+.band img{position:absolute;left:0;top:-9%;width:100%;height:118%;object-fit:cover;filter:saturate(.7) brightness(.66);will-change:transform}
+.band__cap{position:absolute;left:0;right:0;bottom:clamp(28px,6vw,64px);z-index:2;text-align:center;font-family:var(--serif);font-size:clamp(20px,3vw,34px);letter-spacing:.2em;color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.45);padding:0 20px}
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:clamp(16px,2.4vw,32px);position:relative}
+.steps::before{content:"";position:absolute;left:0;right:0;top:11px;height:1px;background:var(--line)}
+.steps::after{content:"";position:absolute;left:0;top:11px;height:1px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left}
+.js .steps::after{transition:transform 2.4s cubic-bezier(.6,.1,.2,1)}
+.steps.is-in::after,html:not(.js) .steps::after{transform:scaleX(1)}
+.step{position:relative;padding-top:46px}
+.step__dot{position:absolute;left:0;top:0;width:23px;height:23px;border-radius:50%;border:1px solid var(--mute);background:var(--base);display:grid;place-items:center}
+.step__dot::after{content:"";width:11px;height:11px;border-radius:50%;background:var(--accent);transform:scale(0);transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.steps.is-in .step__dot::after,html:not(.js) .step__dot::after{transform:scale(1)}
+.steps.is-in .step:nth-child(2) .step__dot::after{transition-delay:.6s}
+.steps.is-in .step:nth-child(3) .step__dot::after{transition-delay:1.2s}
+.steps.is-in .step:nth-child(4) .step__dot::after{transition-delay:1.8s}
+.steps.is-in .step:nth-child(5) .step__dot::after{transition-delay:2.3s}
+.step__no{font-family:var(--num);font-size:13px;color:var(--accent);letter-spacing:.12em}
+.step h3{font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:.14em;margin:6px 0 10px}
+.step p{font-size:14.5px;color:var(--mute);line-height:1.85}
+.loop-note{display:flex;align-items:center;gap:10px;margin-top:40px;color:var(--mute);font-size:14px;letter-spacing:.1em}
+.loop-note svg{width:22px;height:22px;fill:none;stroke:var(--accent);stroke-width:1.4}
+/* values */
+.vals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.vals li{padding:36px clamp(16px,2.6vw,36px) 8px;border-left:1px solid var(--line)}
+.vals li:first-child{border-left:0;padding-left:0}
+.vals h3{font-family:var(--serif);font-weight:600;font-size:clamp(19px,1.9vw,23px);letter-spacing:.12em;margin-bottom:12px}
+.vals p{font-size:15px;color:var(--mute)}
+/* message */
+.msg{display:flex;flex-direction:row-reverse;gap:clamp(40px,6vw,90px);justify-content:center;align-items:flex-start}
+.msg__title{writing-mode:vertical-rl;font-family:var(--serif);font-weight:600;font-size:clamp(28px,3vw,40px);letter-spacing:.2em;line-height:1.7;flex:none}
+.msg__body{writing-mode:vertical-rl;font-family:var(--serif);font-size:16px;line-height:2.3;letter-spacing:.14em;height:30em;max-width:100%;overflow-x:auto}
+.msg__body p{margin:0 0 0 1.6em}
+.msg__body p.first{font-size:1.3rem}
+.msg__sign{text-align:end;font-size:15px;letter-spacing:.2em;padding-top:2em}
+.msg__sign small{display:block;font-size:13px;color:var(--mute)}
+/* profile */
+.co{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(32px,6vw,90px);align-items:start}
+.profile{border-top:1px solid var(--line)}
+.profile > div{display:grid;grid-template-columns:9em minmax(0,1fr);gap:20px;padding:22px 0;border-bottom:1px solid var(--line)}
+.profile dt{color:var(--mute);font-size:14px;letter-spacing:.14em}
+.profile dd{margin:0}
+.profile dd li{position:relative;padding-left:1.1em}
+.profile dd li::before{content:"";position:absolute;left:0;top:.85em;width:6px;height:6px;background:var(--accent);border-radius:var(--bullet-r,50%)}
+/* footer */
+.ft{padding:72px 0 calc(40px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--base-deep)}
+.ft__in{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:32px}
+.ft__tag{font-family:var(--serif);font-size:clamp(17px,1.8vw,22px);letter-spacing:.18em;margin-top:18px}
+.ft nav ul{display:flex;flex-wrap:wrap;gap:10px 26px}
+.ft nav a{font-size:12.5px;letter-spacing:.12em;color:var(--mute);text-decoration:none}
+.ft nav a:hover{color:var(--text)}
+.copy{margin-top:40px;font-family:var(--latin);font-size:13px;letter-spacing:.1em;color:var(--mute)}
+/* rail shared */
+.rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);height:52vh;width:28px;z-index:90;pointer-events:none}
+.rail__line{position:absolute;left:13px;top:0;bottom:0;width:1px;background:var(--line)}
+.rail__fill{position:absolute;left:13px;top:0;width:1px;height:100%;background:var(--accent);transform-origin:top;transform:scaleY(0)}
+.rail__tick{position:absolute;left:9px;width:9px;height:1px;background:var(--line);transition:width .4s,background .4s,left .4s}
+.rail__tick.is-passed{left:8px;width:11px;background:var(--accent)}
+.rail__read{position:absolute;left:8px;top:0;margin-top:18px;writing-mode:vertical-rl;font-family:var(--num);font-size:11px;line-height:1;color:var(--mute);letter-spacing:.1em;white-space:nowrap;font-variant-numeric:tabular-nums}
+@media (max-width:900px){
+  .menu-btn{display:block;z-index:120}
+  .gnav{position:fixed;inset:0;background:var(--menu-bg);display:grid;place-items:center;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s;z-index:110}
+  .gnav.is-open{opacity:1;visibility:visible}
+  .gnav ul{flex-direction:column;align-items:center;gap:26px}
+  .gnav a{font-family:var(--serif);font-size:20px}
+  .two,.biz,.co{grid-template-columns:minmax(0,1fr)}
+  .biz:nth-of-type(even) .biz__media{order:0}
+  .steps{grid-template-columns:minmax(0,1fr);gap:0;padding-left:44px}
+  .steps::before,.steps::after{left:11px;right:auto;top:10px;bottom:10px;width:1px;height:auto}
+  .steps::after{transform:scaleY(0);transform-origin:top}
+  .steps.is-in::after,html:not(.js) .steps::after{transform:scaleY(1)}
+  .step{padding:0 0 34px}
+  .step__dot{left:-44px}
+  .vals{grid-template-columns:minmax(0,1fr)}
+  .vals li{border-left:0;padding:28px 0 4px;border-bottom:1px solid var(--line)}
+  .msg{flex-direction:column;gap:30px}
+  .msg__title,.msg__body{writing-mode:horizontal-tb;height:auto}
+  .msg__body{line-height:2.1;letter-spacing:.06em}
+  .msg__body p{margin:0 0 1.4em}
+  .msg__sign{text-align:right;padding-top:0}
+  .rail{right:6px;height:36vh;width:20px}
+  .rail__read{display:none}
+}
+@media (max-width:640px){
+  :root{--hh:64px}
+  .profile > div{grid-template-columns:minmax(0,1fr);gap:4px}
+  body{font-size:15px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv,.js .hero [data-in]{opacity:1;transform:none}
+  .js .fig .ln{stroke-dashoffset:0}.js .fig .pop,.js .fig .lbl{opacity:1;transform:none}
+  .steps::after{transform:none!important}.step__dot::after{transform:scale(1)!important}
+}
+/* ===== site ===== */
+/* heading: JA serif + small EN beside (baseline) */
+.sh{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 20px;margin-bottom:clamp(40px,6vw,72px)}
+.sh__ja{font-family:var(--serif);font-weight:600;font-size:clamp(26px,3.2vw,40px);letter-spacing:.12em;line-height:1.55}
+.sh__en{font-family:var(--latin);font-weight:300;font-size:14px;letter-spacing:.2em;color:var(--accent);text-transform:lowercase}
+/* hero E */
+.hero{background:var(--base-deep)}
+.hero__veil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(11,23,21,.55) 0%,transparent 28%,transparent 55%,rgba(11,23,21,.92) 100%),linear-gradient(90deg,rgba(11,23,21,.55),transparent 45%)}
+.hero__in{position:relative;z-index:2;min-height:100vh;min-height:100svh;width:min(1180px,100% - 120px);margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;padding:calc(var(--hh) + 30px) 0 90px}
+.hero__title{grid-column:2;grid-row:1;writing-mode:vertical-rl;font-family:var(--serif);font-weight:600;font-size:clamp(38px,4.8vw,66px);letter-spacing:.22em;line-height:1.55;text-shadow:0 2px 30px rgba(0,0,0,.4)}
+.hero__title span{display:block}
+.hero__title span+span{padding-top:2.6em}
+.hero__lead{grid-column:1;grid-row:1;align-self:end;max-width:27em}
+.hero__mark{font-family:var(--latin);font-weight:300;font-size:clamp(34px,4vw,54px);letter-spacing:.14em;line-height:1;margin-bottom:18px;color:var(--text)}
+.hero__mark b{font-weight:500;color:var(--accent)}
+.hero__lead p.t{font-size:15px;color:#cfdad5}
+.hero__keys{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.hero__keys a{border:1px solid rgba(233,239,233,.3);border-radius:999px;padding:6px 18px;font-size:13px;letter-spacing:.12em;text-decoration:none;transition:border-color .3s,background .3s}
+.hero__keys a:hover{border-color:var(--accent);background:rgba(140,203,178,.08)}
+/* concept */
+.fig--yu .ln{stroke:var(--accent)}
+.fig--yu .soft{stroke:var(--mute);stroke-dasharray:3 6}
+.fig--yu text{font-size:14px}
+.fig--yu .big{font-family:var(--serif);font-size:20px;letter-spacing:.3em;fill:var(--accent)}
+.statement{font-family:var(--serif);font-size:clamp(22px,2.4vw,30px);line-height:1.9;letter-spacing:.1em;margin-bottom:28px}
+.defs{margin-top:34px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
+.defs div{border-top:1px solid var(--line);padding:18px 0}
+.defs dt{font-family:var(--latin);font-size:22px;letter-spacing:.12em;color:var(--accent)}
+.defs dd{margin:4px 0 0;font-size:14.5px;color:var(--mute)}
+/* business */
+.bizsec{background:var(--base-2)}
+.biz__media{aspect-ratio:5/4}
+.biz__media::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(180deg,transparent 0 22px,rgba(11,23,21,.10) 22px 24px);pointer-events:none}
+.ph.is-fallback{background:repeating-linear-gradient(180deg,rgba(140,203,178,.16) 0 18px,transparent 18px 26px),linear-gradient(160deg,#1d3732,#0f1f1c)}
+.biz__no{font-family:var(--latin);font-weight:300;font-size:14px;letter-spacing:.2em;color:var(--mute);margin-bottom:6px}
+/* promise */
+.vals li{position:relative}
+.vals .en{font-family:var(--latin);font-weight:300;font-size:13px;letter-spacing:.24em;color:var(--accent);display:block;margin-bottom:10px;text-transform:uppercase}
+/* process on deep */
+.procsec{background:var(--base-deep)}
+.step__dot{border-radius:2px}
+.step__dot::after{border-radius:1px}
+/* message */
+.msgsec{background:linear-gradient(180deg,var(--base),var(--base-2))}
+/* company on paper */
+.paper{--base:#E9ECE6;--base-2:#DDE2DA;--text:#18241F;--mute:#5C6E66;--accent:#3E8A72;--line:rgba(24,36,31,.16);background:var(--base);color:var(--text)}
+.paper .profile{border-top-color:rgba(24,36,31,.5)}
+/* rail: key */
+.rail__key{position:absolute;left:3px;top:0;width:22px;height:40px;margin-top:-20px;transform-origin:11px 20px}
+.rail__key path,.rail__key circle{fill:none;stroke:var(--accent);stroke-width:1.5;stroke-linecap:round}
+.rail__hole{position:absolute;left:5px;bottom:-34px;width:18px;height:24px}
+.rail__hole path{fill:rgba(233,239,233,.12);stroke:var(--mute);stroke-width:1.2;transition:fill .5s,stroke .5s}
+.rail.is-open .rail__hole path{fill:var(--accent);stroke:var(--accent)}
+.rail.on-paper .rail__line{background:rgba(24,36,31,.25)}
+.rail.on-paper .rail__key path,.rail.on-paper .rail__key circle{stroke:#3E8A72}
+@media (max-width:900px){
+  .hero__in{width:min(1180px,100% - 40px);grid-template-columns:minmax(0,1fr);align-content:end;gap:30px;padding-bottom:84px}
+  .hero__title{grid-column:1;writing-mode:horizontal-tb;font-size:clamp(32px,9vw,42px);letter-spacing:.1em}
+  .hero__title span+span{padding:0 0 0 1em}
+  .hero__lead{grid-row:2}
+  .defs{grid-template-columns:minmax(0,1fr)}
+  .rail__hole{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へスキップ</a>
+<header class="hd" id="hd">
+  <div class="hd__in">
+    <a class="logo" href="#top" aria-label="株式会社フリーライフ トップへ"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="6" width="22" height="20" fill="none" stroke="#8CCBB2" stroke-width="1.3"/><path d="M5 11h22M5 15h22M5 19h16" stroke="#8CCBB2" stroke-width="1.1" opacity=".75"/><circle cx="23.5" cy="21.5" r="2.2" fill="none" stroke="#E9EFE9" stroke-width="1.2"/></svg><span class="logo__name">フリーライフ<small>FREE LIFE Co., Ltd.</small></span></a>
+    <!-- 【確認事項】ロゴは仮デザインです -->
+    <button class="menu-btn" id="menuBtn" type="button" aria-controls="gnav" aria-expanded="false" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav class="gnav" id="gnav" aria-label="メインメニュー"><ul><li><a href="#concept">社名のこと</a></li><li><a href="#business">事業内容</a></li><li><a href="#process">管理の進め方</a></li><li><a href="#promise">私たちの約束</a></li><li><a href="#message">代表メッセージ</a></li><li><a href="#company">会社概要</a></li></ul></nav>
+  </div>
+</header>
+<div class="rail" id="rail" aria-hidden="true">
+  <div class="rail__line"></div><div class="rail__fill" id="railFill"></div>
+  <svg class="rail__key" id="railKey" viewBox="0 0 22 40"><circle cx="11" cy="8" r="6"/><path d="M11 14v22M11 28h5M11 33h4"/></svg>
+  <svg class="rail__hole" viewBox="0 0 18 24"><path d="M9 2a6 6 0 0 0-3 11.2L4.5 22h9L12 13.2A6 6 0 0 0 9 2z"/></svg>
+</div>
+
+<main id="main">
+
+<section class="hero" id="top" aria-label="メインビジュアル" data-rail>
+  <canvas class="full" id="heroCanvas" aria-hidden="true"></canvas>
+  <!-- 画像：Unsplash（仮）photo-1624204386084-dd8c05e32226 をCanvasに描画。自社物件の写真への差し替え推奨 -->
+  <div class="hero__veil" aria-hidden="true"></div>
+  <div class="hero__in">
+    <!-- 【確認事項】キャッチコピーは仮案 -->
+    <h1 class="hero__title" data-in="1"><span>手入れを、</span><span>ゆとりに。</span></h1>
+    <div class="hero__lead" data-in="3">
+      <p class="hero__mark" aria-hidden="true">Free <b>Life</b></p><!-- 【確認事項】英字表記は仮 -->
+      <p class="t"><span class="nw">株式会社フリーライフは、</span><span class="nw">不動産の管理と物販を行う会社です。</span><span class="nw">建物を大切に守ること、</span><span class="nw">暮らしに役立つ品を届けること。</span></p>
+      <p class="hero__keys"><a href="#estate">不動産管理</a><a href="#goods">物販業</a></p>
+    </div>
+  </div>
+  <span class="cue" aria-hidden="true"></span>
+</section>
+
+<section class="sec" id="concept" aria-labelledby="conceptTitle" data-rail>
+  <div class="wrap two">
+    <div class="rv">
+      <div class="sh"><h2 class="sh__ja" id="conceptTitle">社名のこと</h2><p class="sh__en">our name</p></div>
+      <!-- 【確認事項】社名の解釈はデザイン上のもの。理念文は仮文 -->
+      <p class="statement">暮らしの余白は、<br>見えない手入れから生まれる。</p>
+      <p class="p-mute">住まいは、毎日を受け止める器です。器がきちんと手入れされていれば、そこで暮らす人は余計な心配をせず、自分らしい時間を過ごせます。私たちは、不動産を丁寧に管理し、長く健やかに保つことを仕事の軸にしています。あわせて物販を通じ、暮らしに役立つ品を届けています。</p>
+      <dl class="defs">
+        <div><dt>Free</dt><dd>心配ごとから自由で、時間にゆとりがあること。</dd></div>
+        <div><dt>Life</dt><dd>住まいと品物に支えられた、毎日の暮らし。</dd></div>
+      </dl>
+    </div>
+    <svg class="fig fig--yu" data-draw viewBox="0 0 440 420" role="img" aria-label="不動産管理と物販の二つの仕事が、暮らしの中のゆとりという余白をつくる図">
+      <path class="ln" pathLength="1" d="M40 250 L40 140 L100 100 L160 140 L160 250 Z"/>
+      <path class="ln d2" pathLength="1" d="M62 160 h22 v22 h-22 Z M116 160 h22 v22 h-22 Z M88 250 v-40 h24 v40"/>
+      <path class="ln" pathLength="1" d="M286 170 h120 l-14 80 h-92 Z"/>
+      <path class="ln d2" pathLength="1" d="M310 170 q36 -52 72 0 M300 196 h96 M304 222 h88"/>
+      <path class="ln soft d3" pathLength="1" d="M100 260 Q112 318 191 323"/>
+      <path class="ln soft d3" pathLength="1" d="M346 260 Q334 318 249 323"/>
+      <circle class="ln d4" pathLength="1" cx="220" cy="350" r="40"/>
+      <text class="lbl" x="100" y="80" text-anchor="middle">不動産管理</text>
+      <text class="lbl" x="346" y="118" text-anchor="middle">物販</text>
+      <text class="lbl big" x="226" y="357" text-anchor="middle">余白</text>
+    </svg>
+  </div>
+</section>
+
+<div class="band" aria-hidden="true">
+  <div class="ph"><!-- 画像：Unsplash（仮）photo-1592276040264-e10344a6a10e。自社写真への差し替え推奨 --><img id="bandImg" src="https://images.unsplash.com/photo-1592276040264-e10344a6a10e?auto=format&amp;fit=crop&amp;w=1800&amp;q=72" alt="" loading="lazy" onerror="this.parentNode.classList.add('is-fallback');this.remove()"></div>
+  <p class="band__cap rv"><span class="nw">十年先も、</span><span class="nw">安心して暮らせるように。</span></p>
+</div>
+
+<section class="sec bizsec" id="business" aria-labelledby="bizTitle" data-rail>
+  <div class="wrap">
+    <div class="sh rv"><h2 class="sh__ja" id="bizTitle">事業内容</h2><p class="sh__en">business</p></div>
+    <article class="biz rv" id="estate">
+      <div class="ph biz__media"><!-- 画像：Unsplash（仮）photo-1729505305192-610539203144。自社写真への差し替え推奨 --><img src="https://images.unsplash.com/photo-1729505305192-610539203144?auto=format&amp;fit=crop&amp;w=1200&amp;q=72" alt="家の形のキーホルダーが付いた鍵と、電卓や書類" loading="lazy" onerror="this.parentNode.classList.add('is-fallback');this.remove()"></div>
+      <div>
+        <p class="biz__no">real estate</p>
+        <h3>不動産管理</h3>
+        <!-- 【確認事項】業務内容の説明は仮文。実際の管理範囲をご確認ください -->
+        <p>不動産管理法人として、所有する不動産の管理を担います。建物の状態や入居まわりに目を配り、資産としての価値を長く保てるよう、日々の手入れを積み重ねます。</p>
+        <ul class="tags"><li>不動産の維持・管理</li><li>建物の状態の確認</li><li>入居まわりの対応</li></ul>
+      </div>
+    </article>
+    <article class="biz rv" id="goods">
+      <div class="ph biz__media"><!-- 画像：Unsplash（仮）photo-1650229068182-6931ccb389c2。自社写真への差し替え推奨 --><img src="https://images.unsplash.com/photo-1650229068182-6931ccb389c2?auto=format&amp;fit=crop&amp;w=1200&amp;q=72" alt="棚に並んだ、ラベル付きの編みかご" loading="lazy" onerror="this.parentNode.classList.add('is-fallback');this.remove()"></div>
+      <div>
+        <p class="biz__no">goods</p>
+        <h3>物販業</h3>
+        <!-- 【確認事項】取扱商品・販売方法はCSVに無いため一般的な表現 -->
+        <p>暮らしの中で役立つ品を選び、お届けする物販を行っています。使う人の毎日を思い浮かべながら、長く気持ちよく使えるものを大切にしています。</p>
+        <ul class="tags"><li>商品の仕入れ・選定</li><li>商品の販売</li></ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="sec procsec" id="process" aria-labelledby="procTitle" data-rail>
+  <div class="wrap">
+    <div class="sh rv"><h2 class="sh__ja" id="procTitle">管理の進め方</h2><p class="sh__en">how we care</p></div>
+    <!-- 【確認事項】管理の進め方は一般的な流れとして作成した仮案 -->
+    <!-- 実際の手順なので番号を使用 --><ol class="steps" style="--n:4"><li class="step"><span class="step__dot" aria-hidden="true"></span><span class="step__no">01</span><h3>見る</h3><p>建物の状態や、入居まわりの様子を確かめます。</p></li><li class="step"><span class="step__dot" aria-hidden="true"></span><span class="step__no">02</span><h3>手を入れる</h3><p>気づいたことは小さなうちに、手入れを重ねます。</p></li><li class="step"><span class="step__dot" aria-hidden="true"></span><span class="step__no">03</span><h3>伝える</h3><p>状態と対応を、分かる言葉で正直にお伝えします。</p></li><li class="step"><span class="step__dot" aria-hidden="true"></span><span class="step__no">04</span><h3>見直す</h3><p>長い時間軸で、次の手入れの計画を見直します。</p></li></ol>
+  </div>
+</section>
+
+<section class="sec" id="promise" aria-labelledby="promTitle" data-rail>
+  <div class="wrap">
+    <div class="sh rv"><h2 class="sh__ja" id="promTitle">私たちの約束</h2><p class="sh__en">our promise</p></div>
+    <!-- 【確認事項】3つの約束は仮文 -->
+    <ul class="vals rv">
+      <li><span class="en">Care</span><h3>小さな変化を、見逃さない。</h3><p>建物も品物も、手をかけた分だけ長持ちします。日々の点検と手入れを怠りません。</p></li>
+      <li><span class="en">Honest</span><h3>分かりやすく、正直に。</h3><p>お伝えすべきことは、包み隠さず、分かる言葉でお伝えします。</p></li>
+      <li><span class="en">Long term</span><h3>長い時間軸で、考える。</h3><p>目先の効率より、十年先も安心していられることを優先します。</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec msgsec" id="message" aria-labelledby="msgTitle" data-rail>
+  <div class="wrap">
+    <!-- 【確認事項】代表メッセージは草案です。ご本人の確認・修正を経て公開してください。 -->
+<div class="msg rv">
+  <h2 class="msg__title" id="msgTitle">手をかけた分だけ、<br>暮らしは軽くなる。</h2>
+  <div class="msg__body" tabindex="0" aria-label="代表メッセージ本文"><p class="first">住まいの安心は、目立たない手入れの積み重ねでできています。</p><p>建物の小さな変化に気づき、早めに手を打つこと。入居まわりのことに、きちんと目を配ること。私たちの不動産管理は、その当たり前を続ける仕事です。</p><p>物販でも考えることは同じです。使う人の毎日を思い浮かべ、長く気持ちよく使えるものを選んでお届けします。</p><p>心配ごとがひとつ減れば、暮らしにはそのぶん余白が生まれます。その余白を、静かに、確かに支える会社でありたいと考えています。</p>
+    <p class="msg__sign"><small>株式会社フリーライフ</small>代表取締役<!-- 【確認事項】署名の役職名は仮置き。氏名は会社概要に記載しています --></p>
+  </div>
+</div>
+  </div>
+</section>
+
+<section class="sec paper" id="company" aria-labelledby="coTitle" data-rail>
+  <div class="wrap co">
+    <div class="sh rv"><h2 class="sh__ja" id="coTitle">会社概要</h2><p class="sh__en">company</p></div>
+    <dl class="profile rv">
+<div><dt>商号</dt><dd>株式会社フリーライフ</dd></div>
+<div><dt>代表者</dt><dd>廣江 琴絵</dd></div>
+<div><dt>所在地</dt><dd>〒920-0901<br>石川県金沢市彦三町1-2-1 アルソティ金沢彦三1階<!-- 【確認事項】都道府県名・郵便番号を補記 --></dd></div>
+<div><dt>事業内容</dt><dd><ul><li>不動産管理法人</li><li>物販業</li></ul></dd></div>
+<!-- 【確認事項】設立・資本金などはCSVに無いため未掲載。確定後にコメントを外して入力
+<div><dt>設立</dt><dd></dd></div>
+<div><dt>資本金</dt><dd></dd></div>
+<div><dt>従業員数</dt><dd></dd></div>
+-->
+</dl>
+  </div>
+</section>
+
+</main>
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft__in">
+      <div>
+        <a class="logo" href="#top" aria-label="株式会社フリーライフ トップへ"><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="6" width="22" height="20" fill="none" stroke="#8CCBB2" stroke-width="1.3"/><path d="M5 11h22M5 15h22M5 19h16" stroke="#8CCBB2" stroke-width="1.1" opacity=".75"/><circle cx="23.5" cy="21.5" r="2.2" fill="none" stroke="#E9EFE9" stroke-width="1.2"/></svg><span class="logo__name">フリーライフ<small>FREE LIFE Co., Ltd.</small></span></a>
+        <p class="ft__tag">手入れを、ゆとりに。</p>
+      </div>
+      <nav aria-label="フッターメニュー"><ul><li><a href="#concept">社名のこと</a></li><li><a href="#business">事業内容</a></li><li><a href="#process">管理の進め方</a></li><li><a href="#promise">私たちの約束</a></li><li><a href="#message">代表メッセージ</a></li><li><a href="#company">会社概要</a></li></ul></nav>
+    </div>
+    <p class="copy">&copy; <span id="year">2026</span> 株式会社フリーライフ</p>
+  </div>
+</footer>
+<script>
+(function(){
+'use strict';
+var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var yr = document.getElementById('year'); if (yr) yr.textContent = new Date().getFullYear();
+requestAnimationFrame(function(){ requestAnimationFrame(function(){ document.body.classList.add('is-loaded'); }); });
+/* menu */
+var btn = document.getElementById('menuBtn'), nav = document.getElementById('gnav');
+function setMenu(open){
+  btn.setAttribute('aria-expanded', String(open));
+  btn.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+  nav.classList.toggle('is-open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+  if (open){ var f = nav.querySelector('a'); if (f) f.focus(); }
+}
+btn.addEventListener('click', function(){ setMenu(btn.getAttribute('aria-expanded') !== 'true'); });
+nav.addEventListener('click', function(e){ if (e.target.closest('a') && nav.classList.contains('is-open')) setMenu(false); });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && nav.classList.contains('is-open')){ setMenu(false); btn.focus(); } });
+matchMedia('(min-width:901px)').addEventListener('change', function(m){ if (m.matches) setMenu(false); });
+/* reveal */
+(function(){
+  var targets = document.querySelectorAll('.rv, [data-draw], .steps');
+  function on(el){ el.classList.add(el.hasAttribute('data-draw') ? 'is-drawn' : 'is-in'); if (el._onIn) el._onIn(); }
+  if ('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(es){ es.forEach(function(en){ if (!en.isIntersecting) return; on(en.target); io.unobserve(en.target); }); }, {threshold:.18, rootMargin:'0px 0px -6% 0px'});
+    targets.forEach(function(t){ io.observe(t); });
+  } else { targets.forEach(on); }
+})();
+/* header + rail */
+var hd = document.getElementById('hd'), rail = document.getElementById('rail'), railFill = document.getElementById('railFill');
+var railSecs = Array.prototype.slice.call(document.querySelectorAll('[data-rail]')), ticks = [], navLinks = Array.prototype.slice.call(nav.querySelectorAll('a'));
+var bandImg = document.getElementById('bandImg');
+function layoutTicks(){
+  ticks.forEach(function(t){ t.el.remove(); }); ticks = [];
+  var max = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+  railSecs.forEach(function(s, i){
+    var p = Math.min(1, Math.max(0, (s.getBoundingClientRect().top + scrollY) / max)), el = document.createElement('i');
+    el.className = 'rail__tick'; el.style.top = (p*100) + '%'; if (rail) rail.appendChild(el); ticks.push({p:p, el:el, i:i});
+  });
+  if (window.onTicks) window.onTicks(ticks);
+}
+function progress(){ var max = document.documentElement.scrollHeight - innerHeight; return max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0; }
+var ticking = false;
+function onScroll(){
+  hd.classList.toggle('is-scrolled', scrollY > 40);
+  var p = progress();
+  if (railFill) railFill.style.transform = 'scaleY(' + p + ')';
+  var passed = -1;
+  ticks.forEach(function(t){ var on = p >= t.p - .002; t.el.classList.toggle('is-passed', on); if (on) passed = t.i; });
+  if (window.onRail) window.onRail(p, passed);
+  var mid = innerHeight * .45, cur = null;
+  railSecs.forEach(function(s){ if (s.getBoundingClientRect().top <= mid) cur = s; });
+  navLinks.forEach(function(a){ a.setAttribute('aria-current', String(!!cur && a.getAttribute('href') === '#' + cur.id)); });
+  if (bandImg && !reduce){
+    var r = bandImg.parentElement.getBoundingClientRect();
+    if (r.bottom > 0 && r.top < innerHeight){ var k = (r.top + r.height/2 - innerHeight/2) / innerHeight; bandImg.style.transform = 'translateY(' + (k * -40).toFixed(1) + 'px)'; }
+  }
+  ticking = false;
+}
+addEventListener('scroll', function(){ if (!ticking){ ticking = true; requestAnimationFrame(onScroll); } }, {passive:true});
+addEventListener('load', function(){ layoutTicks(); onScroll(); });
+var rrt; addEventListener('resize', function(){ clearTimeout(rrt); rrt = setTimeout(function(){ layoutTicks(); onScroll(); }, 150); });
+layoutTicks(); onScroll();
+/* canvas boilerplate */
+function canvasHero(cv, api){
+  if (!cv || !cv.getContext) return null;
+  var ctx = cv.getContext('2d'), W = 0, H = 0, running = false, visible = true, raf = 0, t0 = performance.now(), lastW = -1;
+  function resize(force){
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var nw = cv.clientWidth, nh = cv.clientHeight;
+    if (!force && nw === lastW && Math.abs(nh - H) < 120) return;   // ignore mobile URL-bar height jitter
+    W = nw; H = nh; lastW = nw;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    api.build(ctx, W, H, W < 760);
+  }
+  function loop(now){ if (!running) return; api.draw((now - t0) / 1000); raf = requestAnimationFrame(loop); }
+  function start(){ if (running || reduce || !visible || document.hidden) return; running = true; raf = requestAnimationFrame(loop); }
+  function stop(){ running = false; cancelAnimationFrame(raf); }
+  function still(){ api.draw(api.stillT || 99); }
+  resize(true);
+  if (reduce) still(); else start();
+  var rt; addEventListener('resize', function(){ clearTimeout(rt); rt = setTimeout(function(){ resize(false); if (!running) still(); }, 150); });
+  if ('IntersectionObserver' in window){ new IntersectionObserver(function(en){ visible = en[0].isIntersecting; visible ? start() : stop(); }).observe(cv.parentElement); }
+  document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
+  return { still: function(){ if (!running) still(); }, isRunning: function(){ return running; } };
+}
+/* ===== site ===== */
+/* rail: a key turns as it goes down; the keyhole opens at the end */
+var key = document.getElementById('railKey'), papers = Array.prototype.slice.call(document.querySelectorAll('.paper'));
+window.onRail = function(p){
+  key.style.top = (p*100) + '%';
+  key.style.transform = 'rotate(' + (reduce ? 0 : (p*720) % 360).toFixed(1) + 'deg)';
+  rail.classList.toggle('is-open', p > .985);
+  var mid = innerHeight/2;
+  rail.classList.toggle('on-paper', papers.some(function(s){ var r = s.getBoundingClientRect(); return r.top < mid && r.bottom > mid; }));
+};
+onScroll();
+
+/* hero canvas: blinds open one slat at a time over a dusk photo */
+var W, H, ctx, img = new Image(), ready = false, failed = false, my = 0, ty = 0, hero;
+img.crossOrigin = 'anonymous';
+img.onload = function(){ ready = true; if (hero) hero.still(); };
+img.onerror = function(){ failed = true; if (hero) hero.still(); };
+img.src = 'https://images.unsplash.com/photo-1624204386084-dd8c05e32226?auto=format&fit=crop&w=1800&q=72';
+addEventListener('pointermove', function(e){ ty = e.clientY / innerHeight - .5; }, {passive:true});
+function cover(t){
+  var s = Math.max(W / img.naturalWidth, H / img.naturalHeight) * (1.06 - .06 * Math.min(1, t / 14));
+  var w = img.naturalWidth * s, h = img.naturalHeight * s;
+  ctx.drawImage(img, (W - w) * .62, (H - h) * .5, w, h);
+}
+function scene(){   // fallback when the photo cannot load: a dusk sky and a block of flats
+  var g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#3b4b5a'); g.addColorStop(.6, '#c79a86'); g.addColorStop(1, '#2a3434');
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = '#1b2624'; ctx.fillRect(W*.55, H*.18, W*.3, H*.82);
+  ctx.fillStyle = 'rgba(255,214,160,.55)';
+  for (var r = 0; r < 12; r++) for (var c = 0; c < 4; c++) if ((r*7 + c*3) % 5) ctx.fillRect(W*.57 + c*W*.07, H*.22 + r*H*.065, W*.04, H*.03);
+}
+var slatH = 26;
+hero = canvasHero(document.getElementById('heroCanvas'), {
+  stillT: 60,
+  build: function(c, w, h, mobile){ ctx = c; W = w; H = h; slatH = mobile ? 20 : 26; },
+  draw: function(t){
+    ctx.clearRect(0, 0, W, H);
+    if (ready) cover(t); else if (failed) scene(); else { ctx.fillStyle = '#0B1715'; ctx.fillRect(0, 0, W, H); }
+    my += (ty - my) * .04;
+    var n = Math.ceil(H / slatH) + 1;
+    for (var i = 0; i < n; i++){
+      var k = Math.min(1, Math.max(0, (t - .5 - i * .045) / 1.3));
+      var e = k < .5 ? 4*k*k*k : 1 - Math.pow(-2*k + 2, 3) / 2;             // ease in-out
+      var open = Math.min(1, Math.max(0, e * .9 + (reduce ? 0 : Math.sin(t*.5 + i*.18) * .025 + my * .05)));
+      var h = slatH * (1 - open * .9), yc = i * slatH + slatH / 2;
+      var g = ctx.createLinearGradient(0, yc - h/2, 0, yc + h/2);
+      g.addColorStop(0, 'rgba(214,224,218,' + (.96 - open*.35).toFixed(3) + ')');
+      g.addColorStop(1, 'rgba(120,140,132,' + (.96 - open*.35).toFixed(3) + ')');
+      ctx.fillStyle = g; ctx.fillRect(0, yc - h/2, W, h);
+      if (open > .2){ ctx.fillStyle = 'rgba(255,240,215,' + (.10 * open).toFixed(3) + ')'; ctx.fillRect(0, yc - h/2 - 1, W, 1); }
+    }
+    ctx.strokeStyle = 'rgba(214,224,218,.28)'; ctx.lineWidth = 1;          // ladder cords
+    [.18, .5, .82].forEach(function(x){ ctx.beginPath(); ctx.moveTo(W*x, 0); ctx.lineTo(W*x, H); ctx.stroke(); });
+  }
+});
+})();
+</script>
+</body>
+</html>
